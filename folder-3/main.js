@@ -6,7 +6,7 @@ var argumentsLength = function (...args) {
   return args.length;
 };
 
-console.log(argumentsLength(1, 2, 45, 3, null, false, {}, [], "df"));
+// console.log(argumentsLength(1, 2, 45, 3, null, false, {}, [], "df"));
 
 /**
  * @param {number[]} arr
@@ -26,7 +26,7 @@ function plusone(num) {
   return num + 1;
 }
 
-console.log(map([5, 7], plusone));
+// console.log(map([5, 7], plusone));
 
 // reduce
 
@@ -49,4 +49,51 @@ function sum(accum, curr) {
   return accum + curr;
 }
 
-console.log(reduce([1,4,4] ,sum, 0))
+// console.log(reduce([1,4,4] ,sum, 0))
+
+/**
+ * @param {Function[]} functions
+ * @return {Function}
+ */
+var compose = function (functions) {
+  return function (x) {
+    for (const fn of functions) {
+      x = fn(x);
+    }
+    return x;
+  };
+};
+
+const fn = compose([(x) => 2 * x, (x) => x + 1]);
+console.log(fn(4)); // 9
+
+
+// one fn call 
+
+
+/**
+ * @param {Function} fn
+ * @return {Function}
+ */
+var once = function (fn) {
+
+  let call = false;
+
+  return function (...args) {
+
+      if (!call) {
+          call = true;
+          result = fn(...args)
+          return result
+
+      }
+  }
+
+
+}
+
+
+let fn = (a, b, c) => (a + b + c)
+let onceFn = once(fn)
+onceFn(1, 2, 3); // 6
+onceFn(2, 3, 6); // returns undefined without calling 
