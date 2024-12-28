@@ -97,3 +97,28 @@ let fn = (a, b, c) => (a + b + c)
 let onceFn = once(fn)
 onceFn(1, 2, 3); // 6
 onceFn(2, 3, 6); // returns undefined without calling 
+
+
+/**
+ * @param {Object|Array} obj
+ * @return {boolean}
+ */
+var isEmpty = function (obj) {
+
+  if (Array.isArray(obj)) {
+
+      if (obj.length === 0) {
+          return true
+      } else {
+          return false
+      }
+  } else {
+      if (Object.keys(obj).length === 0) {
+          return true;
+      } else {
+          return false
+      }
+  }
+
+
+};
